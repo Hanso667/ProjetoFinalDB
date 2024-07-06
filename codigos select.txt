@@ -1,0 +1,43 @@
+select * from clientes;
+select titulo from livros;
+select nome, data_nascimento from autores;
+select * from pedidos;
+select * from itens_pedidos;
+select * from editoras;
+select * from categorias;
+select * from subcategorias;
+select * from livros where id_categoria = 1;
+select * from livros where id_autor = 3;
+select * from livros where ano_publicacao > 2010;
+select * from clientes where email like '%gmail.com';
+select * from livros where ano_publicacao > 2000 or ano_publicacao < 2020;
+select * from autores where data_nascimento like '%1980';
+select * from livros where isbn like '978%';
+select * from livros where titulo like '%harry potter%';
+select * from editoras where local = 'nova york';
+select * from clientes order by nome;
+select * from livros order by ano_publicacao desc;
+select * from autores where nacionalidade in('Brasileiro','Britanico');
+select * from livros where id_editora <> 1;
+select * from autores order by nacionalidade;
+select * from livros where id_categoria = 1 and id_subcategoria = 1;
+select * from pedidos where valor_total>100;
+select * from autores where nacionalidade = 'Brasileiro';
+select * from pedidos where valor_total between 50 and 200;
+select * from pedidos where id_cliente %2 =0;
+select * from livros where paginas >500;
+select max(ano_publicacao) as MaiorAno, min(ano_publicacao) as MenorAno from livros;
+select * from itens_pedidos where quantidade = 1 or valor_unitario<20;
+select avg(valor_total) as MediaTotal from pedidos;
+select * from itens_pedidos where quantidade > 3 and valor_unitario<50;
+select id_pedido, max(quantidade) as QuantidadeMaxima from itens_pedidos group by id_pedido;
+select count(*) from clientes;
+select sum(valor_total) from pedidos where data like '%2027';
+select * from livros order by ano_publicacao desc limit 10;
+select * from itens_pedidos order by id_itens desc limit 5;
+select * from livros order by paginas desc limit 1;
+select * from livros order by length(titulo) limit 1;
+select count(*) from pedidos where data like '%/07/%';
+
+
+

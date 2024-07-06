@@ -1,0 +1,94 @@
+create table enderecos(
+id_endereco integer not null,
+numero text not null,
+rua text not null,
+cidade text not null,
+estado text not null,
+cep text not null,
+primary key("id_endereco" autoincrement)
+);
+
+create table clientes(
+id_cliente integer not null,
+nome text not null,
+email text not null unique,
+senha text not null,
+telefone text,
+id_endereco int not null,
+primary key("id_cliente" autoincrement)
+foreign key(id_endereco) references enderecos(id_endereco)
+);
+
+create table pedidos(
+id_pedido integer not null,
+data text default current_date,
+valor_total real not null;
+status text default 'aberto',
+id_cliente int not null,
+primary key("id_pedido" autoincrement)
+foreign key(id_cliente) references clientes(id_cliente)
+);
+
+create table itens_pedidos(
+id_itens integer not null,
+quantidade int default '1',
+valor_total real not null,
+valor_unitario real not null,
+id_pedido int not null,
+id_livro int not null,
+primary key("id_itens" autoincrement)
+foreign key (id_pedido) references pedidos(id_pedido)
+foreign key (id_livro) references livros(id_livro)
+);
+
+create table autores(
+id_autor integer not null,
+nome text not null,
+data_nascimento text not null,
+nacionalidader text not null,
+primary key("id_autor" autoincrement)
+);
+
+create table editoras(
+id_editora integer not null,
+nome text not null,
+local text not null,
+telefone text not null,
+primary key ("id_editora"autoincrement)
+);
+
+create table categorias(
+id_categoria integer not null,
+nome text not null,
+primary key ("id_categoria" autoincrement)
+);
+
+create table subcategorias(
+id_subcategoria integer not null,
+nome text not null,
+primary key(id_subcategoria)
+);
+
+create table livros(
+id_livro integer not null,
+titulo text not null,
+estoque int default '0',
+preco real default '1.00',
+paginas int not null,
+ano_publicacao integer not null,
+isbn text not null,
+id_autor int not null,
+id_editora int not null,
+id_categoria int not null,
+id_subcategoria int not null,
+primary key ("id_livro" autoincrement)
+foreign key (id_autor) references autores(id_autor)
+foreign key (id_editora) references editoras(id_editora)
+foreign key (id_categoria) references categorias(id_categoria)
+foreign key (id_subcategoria) references subcategorias(id_subcategoria)
+);
+
+
+
+
+
